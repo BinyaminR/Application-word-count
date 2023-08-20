@@ -1,0 +1,19 @@
+# Use the official Python image as the base image
+FROM python:3.9
+
+# Set environment variables for your Flask app, if needed
+ ENV DB_URL=""
+ ENV USER_NAME=""
+ ENV USER_PWD=""
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the application code into the container
+COPY . /app
+
+# Install dependencies
+RUN pip install -r requirements.txt
+
+# Run the tests when the container starts
+CMD ["python", "test.py"]
