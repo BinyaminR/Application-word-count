@@ -32,9 +32,9 @@ services:
     depends_on:
       - mongodb
     environment:
-      -   USER_NAME="guy"
-      -   USER_PWD="pass"
-      -   DB_URL="mongodb"
+      - USER_NAME="guy"
+      - USER_PWD="pass"
+      - DB_URL="mongodb"
     networks:
       - my-network
 

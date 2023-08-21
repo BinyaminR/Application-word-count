@@ -11,9 +11,9 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Set environment variables as empty (default values)
-ENV USER_NAME="guy"
-ENV USER_PWD="pass"
-ENV DB_URL="mongodb"
+ENV USER_NAME=""
+ENV USER_PWD=""
+ENV DB_URL=""
 
 # Expose port 5000 for the Flask app
 EXPOSE 5000

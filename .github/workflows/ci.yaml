@@ -2,8 +2,9 @@ name: CI
 
 on:
   push:
-    branches:
-      - main  # Adjust this to your main branch name
+    paths:
+      - app.py
+      - Dockerfile
 
 jobs:
   build-test:
