@@ -32,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install flask Flask-Testing
+        pip install flask Flask-Testing pymongo
       working-directory: .  # Adjust the path
 
     - name: Run tests
