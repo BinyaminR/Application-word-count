@@ -1,14 +1,7 @@
 import unittest
 from flask_testing import TestCase
-from app import app
 
 class FlaskAppTest(TestCase):
-
-    def create_app(self):
-        # Set up the Flask app for testing
-        app.config['TESTING'] = True
-        app.config['WTF_CSRF_ENABLED'] = False  # Disable CSRF protection for testing
-        return app
 
     def test_home_route(self):
         response = self.client.get('/')
