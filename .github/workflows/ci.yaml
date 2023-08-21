@@ -33,7 +33,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install flask pytest
+        pip install flask pytest requests
       working-directory: .  # Adjust the path
 
     - name: Run tests
