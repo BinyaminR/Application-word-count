@@ -26,7 +26,7 @@ jobs:
       working-directory: .  # Adjust the path
 
     - name: Run Python Tests
-      uses: python/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3  # Specify your Python version
 
@@ -43,4 +43,4 @@ jobs:
     - name: Stop and remove containers
       run: |
         docker-compose down
-      working-directory: ./path/to/your/app  # Adjust the path
+      working-directory: .  # Adjust the path
