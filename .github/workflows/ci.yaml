@@ -29,6 +29,13 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: 3  # Specify your Python version
+     
+    - name: Set environment variables
+      run: |
+        echo "DB_URL=$DB_URL" >> "mongodb"
+        echo "USER_NAME=$USER_NAME" >> "guy"
+        echo "USER_PWD=$USER_PWD" >> "pass"
+      shell: bash
 
     - name: Install dependencies
       run: |
