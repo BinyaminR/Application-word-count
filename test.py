@@ -1,31 +1,35 @@
 import unittest
+from flask_testing import TestCase
 from app import app
 
-class FlaskAppTest(unittest.TestCase):
+class FlaskAppTest(TestCase):
 
-    def setUp(self):
-        self.app = app.test_client()
-        self.app.testing = True
+    def create_app(self):
+        # Set up the Flask app for testing
+        app.config['TESTING'] = True
+        app.config['WTF_CSRF_ENABLED'] = False  # Disable CSRF protection for testing
+        return app
 
     def test_home_route(self):
-        response = self.app.get('/')
-        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/')
+        self.assert200(response)
         self.assertIn(b'Words and Paragraphs Counter', response.data)
         self.assertIn(b'COUNT', response.data)
 
     def test_count_route_valid_submission(self):
         data = {'text': 'This is a test text'}
-        response = self.app.post('/count', data=data)
-        self.assertEqual(response.status_code, 200)
+        response = self.client.post('/count', data=data)
+        self.assert200(response)
         self.assertIn(b'Words - 5 || Paragraphs - 1 || Characters - 19', response.data)
 
     def test_count_route_no_submission(self):
-        response = self.app.post('/count')
-        self.assertEqual(response.status_code, 400)
+        response = self.client.post('/count')
+        self.assert400(response)
 
     def test_invalid_route(self):
-        response = self.app.get('/invalid-route')
-        self.assertEqual(response.status_code, 404)
+        response = self.client.get('/invalid-route')
+        self.assert404(response)
 
 if __name__ == '__main__':
     unittest.main()
+
