@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Set up Docker Compose
+      uses: docker/compose-cli@v0.10.1
+      with:
+        compose-version: 1.27.4  # Adjust the version as needed
+
+    - name: Build and start containers
+      run: |
+        docker-compose up -d --build
+      working-directory: .  # Adjust the path
+
+    - name: Run Python Tests
+      uses: python/setup-python@v2
+      with:
+        python-version: 3  # Specify your Python version
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+      working-directory: .  # Adjust the path
+
+    - name: Run tests
+      run: |
+        python3 test.py
+      working-directory: .  # Adjust the path
+
+    - name: Stop and remove containers
+      run: |
+        docker-compose down
+      working-directory: ./path/to/your/app  # Adjust the path

@@ -31,17 +31,21 @@ services:
       - "5000:5000"
     depends_on:
       - mongodb
+    environment:
+      -   USER_NAME="guy"
+      -   USER_PWD="pass"
+      -   DB_URL="mongodb"
     networks:
       - my-network
 
-  test:
-    build:
-      context: .
-      dockerfile: Dockerfile.test
-    depends_on:
-      - flask-app
-    networks:
-      - my-network
+ # test:
+ #   build:
+ #     context: .
+ #     dockerfile: Dockerfile.test
+ #   depends_on:
+ #     - flask-app
+ #   networks:
+ #     - my-network
 
 networks:
   my-network:
