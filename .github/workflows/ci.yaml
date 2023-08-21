@@ -31,13 +31,6 @@ jobs:
         python-version: 3  # Specify your Python version
      
 
-    - name: Set Environment Variables
-      env:
-        DB_URL: "mongodb"
-        USER_NAME: "guy"
-        USER_PWD: "pass"
-      run: echo "Environment variables set."
-
     - name: Install dependencies
       run: |
         pip install flask Flask-Testing pymongo

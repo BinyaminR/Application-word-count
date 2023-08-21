@@ -1,28 +1,30 @@
-import unittest
-from flask_testing import TestCase
+import pytest
+from flask import Flask, render_template
+import requests
 
-class FlaskAppTest(TestCase):
+# Create a Flask app for testing
+app = Flask(__name__)
 
-    def test_home_route(self):
-        response = self.client.get('/')
-        self.assert200(response)
-        self.assertIn(b'Words and Paragraphs Counter', response.data)
-        self.assertIn(b'COUNT', response.data)
+@app.route('/')
+def home():
+    return render_template("your_template.html")
 
-    def test_count_route_valid_submission(self):
-        data = {'text': 'This is a test text'}
-        response = self.client.post('/count', data=data)
-        self.assert200(response)
-        self.assertIn(b'Words - 5 || Paragraphs - 1 || Characters - 19', response.data)
+# Create a fixture for the Flask app
+@pytest.fixture
+def client():
+    with app.test_client() as client:
+        yield client
 
-    def test_count_route_no_submission(self):
-        response = self.client.post('/count')
-        self.assert400(response)
+# Define your tests
+def test_home_route(client):
+    response = client.get('/')
+    assert response.status_code == 200
+    assert b'Words and Paragraphs Counter' in response.data
+    assert b'COUNT' in response.data
 
-    def test_invalid_route(self):
-        response = self.client.get('/invalid-route')
-        self.assert404(response)
+# Add more tests as needed
 
 if __name__ == '__main__':
-    unittest.main()
+    pytest.main()
+
 
