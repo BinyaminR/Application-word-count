@@ -27,13 +27,13 @@ jobs:
         git config --local user.name "BinyaminR"
         git commit -a -m "updated image"
       
-   # - name: Checkout Repository
-   #   uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GIT_TOKEN }}
-        branch: ${{ github.ref }}
+        branch: "main"
       
     
