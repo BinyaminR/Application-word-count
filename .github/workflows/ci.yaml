@@ -76,3 +76,22 @@ jobs:
       with:
         push: true
         tags: ${{ secrets.DOCKER_USER }}/w-count:${{ steps.get_commit_message.outputs.message }}
+   
+   
+  update-CD:
+    runs-on: ubuntu-latest 
+    needs: build-image
+
+    steps:
+
+    - name: Checkout tools repo
+      uses: actions/checkout@v3
+      with:
+       repository: cd.env
+       path: main
+       token: ${{ secrets.GIT_TOKEN }}
+
+    
+ 
+
+    
