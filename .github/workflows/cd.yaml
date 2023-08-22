@@ -5,10 +5,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  pull-repo:
     runs-on: ubuntu-latest 
-    needs: build-image
-
+  
     steps:
 
     - name: clone CD repo
