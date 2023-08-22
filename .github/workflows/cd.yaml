@@ -18,7 +18,11 @@ jobs:
         repository: BinyaminR/cd.env
         path: main
         token: ${{ secrets.GIT_TOKEN }}
-
+    
+    - name: Get Commit Message
+      id: get_commit_message
+      run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
+    
     - name: Commit and Push files
       run: |
         cd main/helm/app-chart && ./update_image.sh ${{ secrets.DOCKER_USER }}/w-count:${{ steps.get_commit_message.outputs.message }}
