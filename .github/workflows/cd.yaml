@@ -18,7 +18,7 @@ jobs:
         token: ${{ secrets.GIT_TOKEN }}
     
     - name: Change directory and run script to update image
-      run: cd main/helm/app-chart/ && ./update_image.sh binyamin22/w-count:1.0.1
+      run: cd main/helm/app-chart/ && ./update_image.sh binyamin22/w-count:1.0.0
 
     - name: Commit files
       run: |
