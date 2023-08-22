@@ -5,6 +5,7 @@ on:
     paths:
       - app.py
       - Dockerfile
+      - home.html
 
 jobs:
   build-test:
