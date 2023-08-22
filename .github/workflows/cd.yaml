@@ -34,4 +34,9 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GIT_TOKEN }}
-        branch: "main"
+        branch: ${{ github.ref }}
+      
+    - name: Debug Token Permissions
+      run: |
+       echo "GitHub Token: ${{ secrets.GH_TOKEN }}"
+       curl -H "Authorization: token ${{ secrets.GH_TOKEN }}" https://api.github.com/user/repos
