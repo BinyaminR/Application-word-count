@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest 
   
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Get Commit Message
+      id: get_commit_message
+      run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
 
     - name: clone CD repo
       uses: actions/checkout@v3
@@ -18,10 +24,6 @@ jobs:
         repository: BinyaminR/cd.env
         path: main
         token: ${{ secrets.GIT_TOKEN }}
-    
-    - name: Get Commit Message
-      id: get_commit_message
-      run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
     
     - name: Commit and Push files
       run: |

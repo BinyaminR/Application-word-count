@@ -76,8 +76,9 @@ jobs:
       with:
         push: true
         tags: ${{ secrets.DOCKER_USER }}/w-count:${{ steps.get_commit_message.outputs.message }}
-   
-   
+  
+
+    
  
  
 
