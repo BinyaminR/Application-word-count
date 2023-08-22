@@ -1,9 +1,11 @@
 name: CD
 
 on:
-  push:
-    branches: [ "main" ]
-
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+      
 jobs:
   pull-repo:
     runs-on: ubuntu-latest 
@@ -16,13 +18,10 @@ jobs:
         repository: BinyaminR/cd.env
         path: main
         token: ${{ secrets.GIT_TOKEN }}
-    
-   # - name: Change directory and run script to update image
-   #   run: cd main/helm/app-chart/ && ./update_image.sh binyamin22/w-count:1.0.0
 
-    - name: Commit files
+    - name: Commit and Push files
       run: |
-        cd main/helm/app-chart && ./update_image.sh binyamin22/w-count:1.0.0
+        cd main/helm/app-chart && ./update_image.sh ${{ secrets.DOCKER_USER }}/w-count:${{ steps.get_commit_message.outputs.message }}
         git config --global user.email "binyamin.rothenberg@gmail.com"
         git config --global user.name "BinyaminR"
         git add .
