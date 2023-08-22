@@ -17,12 +17,12 @@ jobs:
         path: main
         token: ${{ secrets.GIT_TOKEN }}
     
-    - name: Change directory and run script to update image
-      run: cd main/helm/app-chart/ && ./update_image.sh binyamin22/w-count:1.0.0
+   # - name: Change directory and run script to update image
+   #   run: cd main/helm/app-chart/ && ./update_image.sh binyamin22/w-count:1.0.0
 
     - name: Commit files
       run: |
-        cd main
+        cd main/helm/app-chart && ./update_image.sh binyamin22/w-count:1.0.0
         git config --global user.email "binyamin.rothenberg@gmail.com"
         git config --global user.name "BinyaminR"
         git commit -m "updated image"
@@ -32,6 +32,6 @@ jobs:
       with:
         github_token: ${{ secrets.GIT_TOKEN }}
         branch: "main"
-        working-directory: main
+   #     working-directory: main
       
     
