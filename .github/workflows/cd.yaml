@@ -25,6 +25,7 @@ jobs:
         cd main/helm/app-chart && ./update_image.sh binyamin22/w-count:1.0.0
         git config --global user.email "binyamin.rothenberg@gmail.com"
         git config --global user.name "BinyaminR"
+        git add .
         git commit -m "updated image"
   
     - name: Push changes
