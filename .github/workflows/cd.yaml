@@ -33,6 +33,6 @@ jobs:
       with:
         github_token: ${{ secrets.GIT_TOKEN }}
         branch: "main"
-        working-directory: main
+        directory: main
       
     
