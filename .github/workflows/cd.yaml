@@ -19,6 +19,9 @@ jobs:
     
     - name: Change directory and run script to update image
       run: cd main/helm/app-chart/ && ./update_image.sh binyamin22/w-count:1.0.0
+  
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
     - name: Commit files
       run: |
@@ -26,9 +29,6 @@ jobs:
         git config --local user.email "binyamin.rothenberg@gmail.com"
         git config --local user.name "BinyaminR"
         git commit -a -m "updated image"
-      
-    - name: Checkout Repository
-      uses: actions/checkout@v2
 
     - name: Push changes
       uses: ad-m/github-push-action@master
