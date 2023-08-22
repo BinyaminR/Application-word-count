@@ -17,9 +17,5 @@ jobs:
         path: main
         token: ${{ secrets.GIT_TOKEN }}
     
-    - name: Change to directory with values.yaml
-      run: cd main/helm/app-chart/
-
-    - name: Run script to update image
-      run: |
-        ./update_image.sh binyamin22/w-count:1.0.1
+    - name: Change directory and run script to update image
+      run: cd main/helm/app-chart/ && ./update_image.sh binyamin22/w-count:1.0.1
