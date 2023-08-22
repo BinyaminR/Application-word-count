@@ -13,6 +13,6 @@ jobs:
     - name: clone CD repo
       uses: actions/checkout@v3
       with:
-        repository: cd.env
+        repository: BinyaminR/cd.env
         path: main
         token: ${{ secrets.GIT_TOKEN }}
