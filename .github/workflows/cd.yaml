@@ -17,5 +17,8 @@ jobs:
         path: main
         token: ${{ secrets.GIT_TOKEN }}
     
+    - name: test
+      run: ls -l
+
     - name: Update image
       run:  ./helm/app-chart/update_image.sh binyamin22/w-count:1.0.1
