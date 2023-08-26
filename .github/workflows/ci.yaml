@@ -2,11 +2,13 @@ name: CI
 
 on:
   push:
+    branches:
+      - feature
     paths:
       - app.py
       - Dockerfile
       - templates/home.html
-
+      
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -25,28 +27,28 @@ jobs:
     - name: Build and start containers
       run: |
         docker-compose up -d --build
-      working-directory: .  # Adjust the path
+      working-directory: . 
 
     - name: Run Python Tests
       uses: actions/setup-python@v4
       with:
-        python-version: 3  # Specify your Python version
+        python-version: 3  
      
 
     - name: Install dependencies
       run: |
         pip install flask pytest requests
-      working-directory: .  # Adjust the path
+      working-directory: .  
 
     - name: Run tests
       run: |
         python3 test.py
-      working-directory: .  # Adjust the path
+      working-directory: .  
 
     - name: Stop and remove containers
       run: |
         docker-compose down
-      working-directory: .  # Adjust the path
+      working-directory: .  
   
   build-image:
     runs-on: ubuntu-latest 
