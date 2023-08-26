@@ -10,6 +10,7 @@ import sys
 
 app = Flask(__name__)
 #client = MongoClient("mongodb://mongodb:27017/")  # Use the correct connection string format
+
 db_url = os.environ.get("DB_URL")
 user_name = os.environ.get("USER_NAME")
 password = os.environ.get("USER_PWD")
