@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: feature
       
     - name: Get Commit Message
       id: get_commit_message
