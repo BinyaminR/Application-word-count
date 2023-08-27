@@ -1,0 +1,25 @@
+name: Commit
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+      
+jobs:
+  merge-main:
+    runs-on: ubuntu-latest 
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Merge and Push files
+      run: |
+        git config --global user.email "binyamin.rothenberg@gmail.com"
+        git config --global user.name "BinyaminR"
+        git merge feature
+        git add .
+        git commit -m "updated image"
+        git push origin main
+
