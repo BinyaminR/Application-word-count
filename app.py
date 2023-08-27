@@ -1,6 +1,6 @@
 # Words Counter and Paragraphs Counter Flask App using Python
 
-# Words Counter and Paragraphs Counter Flask 
+# Words Counter and Paragraphs Counter 
 
 from flask import Flask, request, render_template
 from datetime import datetime
