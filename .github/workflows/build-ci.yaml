@@ -48,6 +48,7 @@ jobs:
 
     - name: Merge and Push files
       run: |
+      
         git config --global user.email "binyamin.rothenberg@gmail.com"
         git config --global user.name "BinyaminR"
         git merge feature
