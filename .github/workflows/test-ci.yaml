@@ -8,7 +8,7 @@ on:
       - app.py
       - Dockerfile
       - templates/home.html
-      
+
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -21,53 +21,42 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: feature # Replace 'feature' with the name of the branch you want to check out
-     
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
-      
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-      
-    
+
     - name: Build and start containers
       run: |
         docker-compose up -d --build
-      working-directory: . 
+      working-directory: .
 
     - name: Run Python Tests
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2 # Updated to actions/setup-python@v2
       with:
-        python-version: 3  
-     
+        python-version: 3
 
     - name: Install dependencies
       run: |
         pip install flask pytest requests
-      working-directory: .  
+      working-directory: .
 
     - name: Run tests
       run: |
         python3 test.py
-      working-directory: .  
+      working-directory: .
 
     - name: Stop and remove containers
       run: |
         docker-compose down
       working-directory: .
 
-      - name: Slack Notification
-        uses: act10ns/slack@v1
-        with:
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
-          channel: '#test'
-        if: always()  
-  
-  
-  
-
-    
- 
- 
-
-    
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with:
+        status: ${{ job.status }}
+        steps: ${{ toJson(steps) }}
+        channel: '#test'
+      if: always()
