@@ -11,17 +11,22 @@ jobs:
     runs-on: ubuntu-latest 
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        ref: "main,feature"
+    - uses: actions/checkout@master
 
-    - name: Merge and Push files
+    - name: Merge to main
+      uses: devmasx/merge-branch@master
+      with:
+        type: now
+        from_branch: feature
+        target_branch: main
+        github_token: ${{ secrets.GIT_TOKEN }}
+
+    - name: Push files
       run: |
         git config --global user.email "binyamin.rothenberg@gmail.com"
         git config --global user.name "BinyaminR"
-        git checkout main
-        git merge feature
+        
+        
         git add .
-        git commit -m "updated image"
+        git commit -m "approved update"
         git push origin main
