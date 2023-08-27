@@ -2,7 +2,7 @@ name: CD
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ["Build"]
     types:
       - completed
       
@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+      
     - name: Get Commit Message
       id: get_commit_message
       run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
