@@ -38,24 +38,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USER }}/w-count:${{ steps.get_commit_message.outputs.message }}
   
-  merge-main:
-    runs-on: ubuntu-latest 
-    needs: build-image
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Merge and Push files
-      run: |
-      
-        git config --global user.email "binyamin.rothenberg@gmail.com"
-        git config --global user.name "BinyaminR"
-        git merge feature
-        git add .
-        git commit -m "updated image"
-        git push origin main
-
+  
 
 
       

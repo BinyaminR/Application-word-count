@@ -20,7 +20,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        ref: feature # Replace 'feature' with the name of the branch you want to check out
+        ref: feature  
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
@@ -34,7 +34,7 @@ jobs:
       working-directory: .
 
     - name: Run Python Tests
-      uses: actions/setup-python@v2 # Updated to actions/setup-python@v2
+      uses: actions/setup-python@v2 
       with:
         python-version: 3
 
