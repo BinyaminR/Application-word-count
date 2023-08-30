@@ -24,17 +24,17 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: BinyaminR/cd.env
-        path: main
+        path: feature
         token: ${{ secrets.GIT_TOKEN }}
     
     - name: Commit and Push files
       run: |
-        cd main/helm/app-chart && ./update_image.sh ${{ secrets.DOCKER_USER }}/w-count:${{ steps.get_commit_message.outputs.message }}
+        cd feature/helm/app-chart && ./update_image.sh ${{ secrets.DOCKER_USER }}/w-count:${{ steps.get_commit_message.outputs.message }}
         git config --global user.email "binyamin.rothenberg@gmail.com"
         git config --global user.name "BinyaminR"
         git add .
         git commit -m "updated image"
-        git push origin main
+        git push origin feature
   
       
     
