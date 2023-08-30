@@ -25,6 +25,7 @@ jobs:
       with:
         repository: BinyaminR/cd.env
         path: feature
+        ref: feature # Specify the branch to checkout
         token: ${{ secrets.GIT_TOKEN }}
     
     - name: Commit and Push files
