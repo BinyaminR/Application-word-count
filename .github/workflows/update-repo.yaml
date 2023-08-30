@@ -21,12 +21,4 @@ jobs:
         target_branch: main
         github_token: ${{ secrets.GIT_TOKEN }}
 
-    - name: Push files
-      run: |
-        git config --global user.email "binyamin.rothenberg@gmail.com"
-        git config --global user.name "BinyaminR"
-        
-        
-        git add .
-        git commit -m "approved update"
-        git push origin main
+  
