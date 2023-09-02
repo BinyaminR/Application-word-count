@@ -13,7 +13,7 @@ This application serves as a foundational template for a CI/CD (Continuous Integ
 ### Key Features:
 
 1. **Continuous Integration (CI)**: Implemented through GitHub Actions, the CI process involves automatic linting, unit testing, and building Docker images upon every Git push to the repository.
-   
+
 2. **Continuous Deployment (CD)**: Uses ArgoCD and Helm charts for the deployment phase, providing automated, GitOps-driven application updates directly into the GKE (Google Kubernetes Engine) clusters.
 
 3. **Infrastructure as Code (IaC)**: Utilizes Terraform to provision and manage all required cloud infrastructure, making it highly replicable and version-controlled.
@@ -23,6 +23,20 @@ This application serves as a foundational template for a CI/CD (Continuous Integ
 5. **Orchestration**: Uses Kubernetes for container orchestration, allowing for high availability, load balancing, and horizontal scaling.
 
 6. **Monitoring**: Incorporates Prometheus and Grafana for real-time monitoring and analytics of the application and the underlying infrastructure.
+
+### CI Environment and Workflows
+
+The CI environment is configured using GitHub Actions. There are various workflows defined in the `.github/workflows` directory of the repository. These workflows define the sequence of actions that will be automatically executed upon every push to the repository.
+
+The typical workflow includes the following steps:
+
+1. **Linting**: The code is automatically linted to ensure it adheres to the established coding standards.
+
+2. **Unit Testing**: Automated unit tests are run to ensure that the new changes do not break existing functionality.
+
+3. **Building Docker Images**: Docker images for the application are built and pushed to a Docker registry.
+
+Once the changes are pushed to a feature branch, they are automatically tested using the above-mentioned steps. If the tests pass, a Pull Request can be created to merge the changes into the main branch. The Pull Request is reviewed, and if everything is in order, the changes are merged into the main branch, thereby triggering the CD process.
 
 ## Technologies Used
 
